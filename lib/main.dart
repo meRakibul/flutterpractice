@@ -131,6 +131,6 @@ class HomeActivity extends StatelessWidget {
  
       
     );
-  }
+  }    //this is flutter practice project
 
 }
