@@ -24,6 +24,26 @@ class HomeActivity extends StatelessWidget {
     );
   }
 
+ MyallertDialog(context){
+    return showDialog(
+        context: context,
+        builder: (BuildContext context){
+          return Expanded(child: AlertDialog(
+            title: Text("Allert!"),
+            content: Text("Do You Want To Access Gallery"),
+            actions: [
+              TextButton(onPressed: (){
+                Navigator.of(context).pop();
+                Mysnack("Accepted", context);}, child: Text("Yes")),
+              TextButton(onPressed: (){
+                Mysnack("Denied", context);
+                Navigator.of(context).pop();}, child: Text("No")),
+            ],
+          ));
+          
+        }
+    );
+ }
 
   @override
   Widget build(BuildContext context) {
@@ -36,11 +56,7 @@ class HomeActivity extends StatelessWidget {
       )
     );
 
-    ButtonStyle buttonStyle1 = TextButton.styleFrom(
-      padding: EdgeInsets.all(25),
-      backgroundColor: Colors.tealAccent,
-      foregroundColor: Colors.lightGreen,
-    );
+
     return Scaffold(
       appBar: AppBar(
         title: Text("Dialar Demo App"),
@@ -105,32 +121,11 @@ class HomeActivity extends StatelessWidget {
    ),
  ),
       body:
-   Row(
-     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-    children: [
-      Container(
-        margin: EdgeInsets.all(10),
-        child: TextButton(onPressed: (){Mysnack("This is Button", context);},
-            style:buttonStyle1,child: Text("TEXT BUTTON")),
-      ),
-      Container(
-        margin: EdgeInsets.all(10),
-        child: ElevatedButton(onPressed: (){Mysnack("I am Elevated Button", context);},
-            style:buttonStyle,
-            child: Text("Elevated")),
-      ),
-      Container(
-        margin: EdgeInsets.fromLTRB(1 , 2 ,3 ,4),
-        child: OutlinedButton(onPressed: (){Mysnack("Outline Button", context);}, child: Text("Outline"),
-           style:buttonStyle,
-            ),
+        Center(
+          child: ElevatedButton(onPressed: (){MyallertDialog(context);}, child: Text("Click me")),
+        )
+      );
 
-      )
-    ],
-   ),
- 
-      
-    );
   }    //this is flutter practice project
 
 }
