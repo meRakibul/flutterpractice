@@ -18,38 +18,81 @@ class Myapp extends StatelessWidget {
     );
   }
 }
-
 class HomeActivity extends StatelessWidget {
   HomeActivity({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return DefaultTabController(
-        length: 8,
-        child: Scaffold(
-          appBar: AppBar(
-            title: Text("My App"),
-            backgroundColor: Colors.tealAccent,
-            bottom: TabBar(
-                isScrollable: true,
-                tabs: [
-              Tab(icon: Icon(Icons.home),text: "Home",),
-              Tab(icon: Icon(Icons.search),text: "Search",),
-              Tab(icon: Icon(Icons.settings),text: "Settings",),
-              Tab(icon: Icon(Icons.contact_mail_outlined),text: "Contact",),
-              Tab(icon: Icon(Icons.alternate_email),text:"Email" ,),
-              Tab(icon: Icon(Icons.timer),text: "Time",),
-              Tab(icon: Icon(Icons.account_balance),text: "Balance",),
-              Tab(icon: Icon(Icons.add),text: "ADD",),
+    return Scaffold(
+      appBar: AppBar(
+        title: Text("Home"),
+        backgroundColor: Colors.tealAccent,
+      ),
+      body: Column(
+        mainAxisAlignment: MainAxisAlignment.start,
+        children: [
+          ElevatedButton(onPressed: (){
+            Navigator.push(context, MaterialPageRoute(builder: (context)=>Scren1("This is Page1 From Home")));
+          }, child: Text("Go To 1")),
+          ElevatedButton(onPressed: (){
+            Navigator.push(context, MaterialPageRoute(builder: (context)=>Scren2("This is Page2 From Home ")));
+          }, child: Text("Go To 2"))
+        ],
+      ),
+    );
+  }
 
-            ]),
-          ),
-          body: TabBarView(children: [
-         Homefragement(),
-            Settingsfragement()
+}
 
-          ]),
-        ));
+class Scren1 extends StatelessWidget {
+  String msg;
+   Scren1(
+       this.msg,
+
+      {super.key});
+
+  @override
+  Widget build(BuildContext context) {
+   return Scaffold(
+     appBar: AppBar(
+       title: Text(msg),
+       backgroundColor: Colors.tealAccent,
+     ),
+     body: Center(
+       child: ElevatedButton(onPressed: (){
+         Navigator.push(context, MaterialPageRoute(builder: (context)=>Scren2("This is From Home")));
+       }, child: Text("Page2")),
+     ),
+   );
+  }
+
+}
+class Scren2 extends StatelessWidget {
+  String msg;
+ Scren2(
+     this.msg,
+     {super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text(msg),
+        backgroundColor: Colors.tealAccent,
+      ),
+      body: Column(
+        mainAxisAlignment: MainAxisAlignment.start,
+        children: [
+          ElevatedButton(onPressed: (){
+            Navigator.push(context, MaterialPageRoute(builder: (context)=>HomeActivity()));
+          }, child: Text("Home")),
+          ElevatedButton(onPressed: (){
+            Navigator.push(context, MaterialPageRoute(builder: (context)=>Scren1("THis is from Page 2")));
+          }, child: Text("Page 1"))
+        ],
+      )
+
+    );
   }
 
 }
