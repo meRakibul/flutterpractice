@@ -15,7 +15,17 @@ class Myapp extends StatelessWidget{
   
 }
 class HomeActivity extends StatelessWidget{
-  const HomeActivity({super.key});
+   HomeActivity({super.key});
+   var MyItems=[
+   {"img":"https://i.postimg.cc/Y0yTmYrP/IMG-3417.jpg","title":"Rakib"},
+     {"img":"https://i.postimg.cc/Y0yTmYrP/IMG-3417.jpg","title":"Hasan"},
+     {"img":"https://i.postimg.cc/Y0yTmYrP/IMG-3417.jpg","title":"Piash"},
+     {"img":"https://i.postimg.cc/Y0yTmYrP/IMG-3417.jpg","title":"Buiyan"},
+     {"img":"https://i.postimg.cc/Y0yTmYrP/IMG-3417.jpg","title":"Rakko"},
+     {"img":"https://i.postimg.cc/Y0yTmYrP/IMG-3417.jpg","title":"Handsome"},
+     {"img":"https://i.postimg.cc/Y0yTmYrP/IMG-3417.jpg","title":"Fahad"}
+     
+   ];
   Mysnack(message, context){
     return ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(content: Text(message))
@@ -112,29 +122,21 @@ class HomeActivity extends StatelessWidget{
           ],
         ),
       ),
-      body:
-      Column(
-        mainAxisAlignment: MainAxisAlignment.start,
-        children: [
-          Padding(padding: EdgeInsets.all(10),
-          child: TextField(
-            decoration: InputDecoration(border: OutlineInputBorder(),labelText: "First Name"),
-          ),),
-          Padding(padding: EdgeInsets.all(10),
-          child: TextField(
-            decoration: InputDecoration(border: OutlineInputBorder(),labelText: "Last Name"),
-          ),),
-          Padding(padding: EdgeInsets.all(10),
-          child: TextField(
-            decoration: InputDecoration(border: OutlineInputBorder(),labelText: "Email"),
-          ),),
-          Padding(padding: EdgeInsets.all(20),
-          child: ElevatedButton(onPressed: (){MyallertDialog(context);
-          Mysnack("Log in Succesfull", context);}, child: Text("Log IN"),style: buttonStyle,),)
-          
-        ],
+      body: ListView.builder(
+          itemCount: MyItems.length,
+          itemBuilder: (context,index){
+            return GestureDetector(
+              onTap: (){Mysnack(MyItems[index]['title'], context);},
+              child: Container(
+                margin: EdgeInsets.all(10),
+                width: double.infinity,
+                height: 250,
+                child: Image.network(MyItems[index]['img']!,fit: BoxFit.fill,),
+              ),
+            );
+        
+      })
 
-      ),
 
 
 
