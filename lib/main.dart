@@ -29,17 +29,11 @@ class HomeActivity extends StatelessWidget {
         backgroundColor: Colors.tealAccent,
     ),
       body: Center(
-        child: Card(
-          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(30)),
-          elevation: 80,
+        child: LinearProgressIndicator(
           color: Colors.purpleAccent,
-          shadowColor: Color.fromRGBO(33, 191, 115, 0.3),
-          child: SizedBox(
-            height: 200,
-            width: 200,
-            child: Center(child: Text("This is a card"),),
-          ),
-        ),
+          minHeight: 5,
+          backgroundColor: Colors.lightGreen,
+        )
       ),
     );
     }
